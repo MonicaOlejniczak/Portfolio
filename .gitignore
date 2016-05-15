@@ -1,0 +1,13 @@
+# Jetbrains
+.idea
+*.iml
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules
+
+# Typescript
+typings
