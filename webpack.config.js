@@ -15,6 +15,9 @@ module.exports = {
         extensions: ['', '.ts', '.webpack.js', '.web.js', '.js']
     },
     module: {
+        preLoaders: [
+            { test: /\.ts$/, loader: "tslint" }
+        ],
         loaders: [
             { test: /\.css$/, loader: "style!css" },
             { test: /\.ts$/, loader: 'ts-loader' }
