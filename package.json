@@ -2,14 +2,6 @@
   "name": "angular2",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "lite": "lite-server",
-    "postinstall": "typings install",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "typings": "typings"
-  },
   "dependencies": {
     "compression": "1.0.7",
     "express": "4.4.3",
@@ -33,9 +25,7 @@
     "bootstrap": "^3.3.6"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
     "css-loader": "^0.23.1",
-    "lite-server": "^2.2.0",
     "node-sass": "^3.7.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
