@@ -1,11 +1,13 @@
 const webpack = require('webpack');
+const path = require('path');
+const entries = ['app', 'vendor', 'polyfills'];
 
 module.exports = {
-    context: __dirname + '/app',
+    context: path.resolve('app'),
     entry: {
         polyfills: './polyfills',
         vendor: './vendor',
-        app: './main'
+        app: './app'
     },
     output: {
         path: __dirname,
@@ -14,14 +16,25 @@ module.exports = {
     resolve: {
         extensions: ['', '.ts', '.webpack.js', '.web.js', '.js']
     },
+    resolveLoader: {
+        root: path.resolve('node_modules')
+    },
     module: {
-        preLoaders: [
-            { test: /\.ts$/, loader: "tslint" }
-        ],
-        loaders: [
-            { test: /\.css$/, loader: "style!css" },
-            { test: /\.ts$/, loader: 'ts-loader' }
-        ]
+        preLoaders: [{
+            test: /\.ts$/,
+            loader: 'tslint'
+        }],
+        loaders: [{
+            test: /\.scss$/,
+            loaders: [
+                'style',
+                'css?sourceMap',
+                'sass?sourceMap'
+            ]
+        }, { 
+            test: /\.ts$/, 
+            loader: 'ts'
+        }]
     },
     devServer: {
         contentBase: 'app',
@@ -30,6 +43,10 @@ module.exports = {
         compress: true
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+           name: entries
+        }),
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    devtool: 'inline-source-map'
 };
